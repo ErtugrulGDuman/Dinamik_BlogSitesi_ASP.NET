@@ -1,0 +1,135 @@
+﻿@model AltTab.Models.Comment
+@{
+    ViewBag.Title = "Detay";
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-8">
+            <!--Makale Listesi-->
+            <div class="card-group">
+                <div class="card">
+                    <img src="/Content/images/@ViewBag.makale.Image" class="card-img-top" alt="..." height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">@ViewBag.makale.Title</h5>
+                        <p class="card-text">@ViewBag.makale.Description</p>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <!--Yıldız-->
+                    @{ int a = 1;}
+                    <script>
+                            $(function () {
+                                $('#@("puan"+a)').rateYo(){
+                                    rating:@ViewBag.ortalama,
+                                        readonly: true,
+                                        multiColor: {
+                                        "startColor": "#FF0000", //RED
+                                            "endColor": "#00FF00"  //GREEN
+                                    },
+                                });
+                            });
+                    </script>
+                    <div id="@("puan"+a)"></div>
+                </div>
+                <div class="col-md-2">
+                    <!--Ortalama-->
+                    <h4>[@ViewBag.ortalama] @ViewBag.sayi</h4>
+                </div>
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Comments <i class="bi bi-chat" style="text-align:center"></i> (@ViewBag.sayi)</h4>
+                </div>
+            </div>
+            <div class="row" style="background-color:lightgray">
+                @{int i = 1;}
+                @*@foreach (var item in ViewBag.Makale.Comments)
+                    {
+                        <div class="col-md-6">
+                            <img src="~/Content/images/Alttab.net.1png-removebg-preview.png" width="50" height="50" />
+                            <strong>@item.UserId</strong> (@item.Date)
+                            <script>
+                                $(function () {
+                                    $('#@("puanlar"+i)').rateYo(){
+                                        rating:@item.Puan,
+                                            readonly: true,
+                                            multiColor: {
+                                            "startColor": "#FF0000", //RED
+                                                "endColor": "#00FF00"  //GREEN
+                                        },
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div class="col-md-6" id="@("puanlar"+i)"></div>
+                        <p>@item.Description</p>
+                        i++;
+                    }*@
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("YorumGonder", "Home", FormMethod.Post, new { @class = "row" }))
+                    {
+                        <div class="col-md-9">
+
+                        </div>
+                        <div class="col-md-3">
+                            <!--Puan Alanı-->
+                            <div id="PuanVer"></div>
+                            <input type="hidden" id="rating" name="rating" />
+                            <br />
+                        </div>
+                        <div class="mb-3">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                        </div>
+                        <br />
+                        <div class="col-md-9">
+
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary" style="width:150px">Yorum Yap</button>
+                            @Html.HiddenFor(model => model.MakaleId)
+                            <br />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Uyarı! </strong>Yorum yapmak için @Html.ActionLink("Giriş", "Login", "Account", new { ReturnUrl = Request.RawUrl }, null) yapınız.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!--Kategori Listesi-->
+            @Html.Action("KategoriListesi", "Category")
+            <br />
+            @Html.Action("MostRead", "Home")
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#PuanVer").rateYo({
+            rating: 0,
+            numStars: 5,
+            maxValue: 5,
+            fullStaar: true,
+            multiColor: {
+                "startColor": "#FF0000", //RED
+                "endColor": "#00FF00"  //GREEN
+            },
+            onChange: function (reting, rateYoInstance) {
+                $('#rating').val(rating);
+            }
+        });
+    });
+</script>

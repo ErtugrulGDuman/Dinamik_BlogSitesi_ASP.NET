@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Index">Admin Sayfası</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ana Sayfa</li>
+            </ol>
+        </nav>
+        <div class="col-md-3">
+            <div class="img-thumbnail">
+                <br />
+                <img src="~/Content/images/Alttab.net.jpg" width="100" height="100"/>
+                <a href="/Admin/YazarListesi" class="btn btn-primary">Tüm Makaleler <span class="badge bg-">@ViewBag.sayi</span></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="img-thumbnail">
+                <br />
+                <img src="~/Content/images/Alttab.net.jpg" width="100" height="100"/>
+                <a href="/Admin/OnaylıMakale" class="btn btn-success">Onaylı Makaleler <span class="badge bg-">@ViewBag.onaylı</span></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="img-thumbnail">
+                <br />
+                <img src="~/Content/images/Alttab.net.jpg" width="100" height="100"/>
+                <a href="/Admin/OnaysızMakale" class="btn btn-info">Onaysız Makaleler <span class="badge bg-">@ViewBag.onaysız</span></a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="img-thumbnail">
+                <br />
+                <img src="~/Content/images/Alttab.net.jpg" width="100" height="100"/>
+                <a href="/Category/Index" class="btn btn-primary">Kategori Listesi</a>
+            </div>
+        </div>
+    </div>
+</div>

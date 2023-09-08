@@ -1,0 +1,39 @@
+﻿@model PagedList<AltTab.Models.MakaleModel>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-8">
+            <!--Makale Listesi-->
+            @foreach (var item in Model)
+            {
+                <div class="card-group">
+                    <div class="card">
+                        <img src="/Content/images/@item.Image" class="card-img-top" alt="..." height="300">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Description</p>
+                            <a href="/Home/Detay/@item.Id" class="btn btn-primary">Devamını oku...</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary"><i class="bi bi-calendar3" style="font-size:20px"></i> @item.ReleaseDate.ToShortDateString() - <i class="bi bi-eye" style="font-size:20px"></i> @item.Views Görüntülenme - <i class="bi bi-chat-square-text" style="font-size:20px"></i>0 Yorum </small>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            }
+            @Html.PagedListPager(Model, sayi=>Url.Action("Index", new { sayi}))
+        </div>
+        <div class="col-md-4">
+            <!--Kategori Listesi-->
+            @Html.Action("KategoriListesi", "Category")
+            <br />
+            @Html.Action("MostRead", "Home")
+        </div>
+    </div>
+</div>

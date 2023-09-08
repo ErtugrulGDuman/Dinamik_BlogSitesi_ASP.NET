@@ -1,0 +1,21 @@
+﻿@model IEnumerable<AltTab.Models.Makale>
+
+<h6 style="color:black">En çok okunan makaleler</h6>
+@foreach (var item in Model)
+{
+    <div class="card mb-3" style="max-width: 355px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <a href="/Home/Detay/@item.Id"><img src="/Content/images/@item.Image" class="img-fluid rounded-start" alt="..." width="90" height="90"></a>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text" style="font-size:14px">@item.Title</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary"><i class="bi bi-calendar3" style="font-size:20px"></i> @item.ReleaseDate.ToShortDateString() -- <i class="bi bi-eye" style="font-size:20px"></i> @item.Views Görüntülenme </small>
+            </div>
+        </div>
+    </div>
+}

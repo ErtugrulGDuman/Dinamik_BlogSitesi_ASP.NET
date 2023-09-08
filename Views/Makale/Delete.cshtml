@@ -1,0 +1,80 @@
+﻿@model AltTab.Models.Makale
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container">
+    <br />
+    <h3>Bu Makaleyi silmek istediğinizden emin misiniz?</h3>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UseName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UseName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Views)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Views)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Confirm)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Confirm)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Sil</button>
+                <a href="/Makale/Index" class="btn btn-outline-warning"><i class="bi bi-file-earmark"></i>Makale Listesi</a>
+            </div>
+        }
+    </div>
+</div>
